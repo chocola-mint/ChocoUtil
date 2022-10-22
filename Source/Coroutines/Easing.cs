@@ -27,7 +27,7 @@ namespace ChocoUtil.Coroutines
         {
             foreach(float t in Interp.GetSteps(duration, ease, useUnscaledTime))
             {
-                image.color = Color.Lerp(from, to, t);
+                image.color = Color.LerpUnclamped(from, to, t);
                 yield return null;
             }
             image.color = to;
@@ -46,7 +46,7 @@ namespace ChocoUtil.Coroutines
         {
             foreach (float t in Interp.GetSteps(duration, ease, useUnscaledTime))
             {
-                transform.position = Vector3.Lerp(from, to, t);
+                transform.position = Vector3.LerpUnclamped(from, to, t);
                 yield return null;
             }
             transform.position = to;
@@ -65,7 +65,7 @@ namespace ChocoUtil.Coroutines
         {
             foreach (float t in Interp.GetSteps(duration, ease, useUnscaledTime))
             {
-                transform.localPosition = Vector3.Lerp(from, to, t);
+                transform.localPosition = Vector3.LerpUnclamped(from, to, t);
                 yield return null;
             }
             transform.localPosition = to;
