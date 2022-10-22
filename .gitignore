@@ -72,4 +72,6 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 # ChocoUtil library builds
-ChocoUtil.dll
+ChocoUtil.dll*
+ChocoUtil.deps.json*
+ChocoUtil.xml*

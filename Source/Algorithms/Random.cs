@@ -4,8 +4,17 @@ using System.Text;
 
 namespace ChocoUtil.Algorithms
 {
+    /// <summary>
+    /// Algorithms involving randomness. Uses UnityEngine's built-in random state.
+    /// </summary>
     public static class Random
     {
+        /// <summary>
+        /// Get the total weight of an array of weighted values.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="choices"></param>
+        /// <returns>The total weight.</returns>
         public static float TotalWeight<T>(WeightedValue<T>[] choices)
         {
             float totalWeight = 0;
