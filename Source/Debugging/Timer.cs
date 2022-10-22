@@ -32,11 +32,17 @@ namespace ChocoUtil.Debugging
         /// </summary>
         /// <param name="label">The label to be used for the code block being timed.</param>
         /// <param name="logger">The logger function to output the formatted results to.</param>
-        public Timer(string label, Action<string>? logger = null){
+        public Timer(string label, Action<string> logger){
             this.label = label;
             this.startTime = Time.realtimeSinceStartupAsDouble;
-            if (logger == null) this.logger = Debug.Log;
-            else this.logger = logger;
+            this.logger = logger;
+        }
+        /// <summary>
+        /// Timer constructor. The default logger (<see cref="Debug.Log(object)"/>) is used.
+        /// </summary>
+        /// <param name="label">The label to be used for the code block being timed.</param>
+        public Timer(string label) : this(label, Debug.Log)
+        {
         }
         /// <summary>
         /// Logs the final time to the logger function.
