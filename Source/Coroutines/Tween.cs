@@ -9,9 +9,9 @@ using ChocoUtil.Algorithms;
 namespace ChocoUtil.Coroutines
 {
     /// <summary>
-    /// A collection of common easing applications.
+    /// A collection of common tweening applications.
     /// </summary>
-    public static partial class Easing
+    public static partial class Tween
     {
         /// <summary>
         /// Fade an image between two colors smoothly.
