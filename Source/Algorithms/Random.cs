@@ -23,6 +23,26 @@ namespace ChocoUtil.Algorithms
             return totalWeight;
         }
         /// <summary>
+        /// Normalize all weights into [0, 1].
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="choices"></param>
+        public static void NormalizeWeight<T>(WeightedValue<T>[] choices)
+        {
+            NormalizeWeight(choices, TotalWeight(choices));
+        }
+        /// <summary>
+        /// Divide all weights by totalWeight to normalize them.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="choices"></param>
+        /// <param name="totalWeight"></param>
+        public static void NormalizeWeight<T>(WeightedValue<T>[] choices, float totalWeight)
+        {
+            for (int i = 0; i < choices.Length; i++)
+                choices[i] = new(choices[i].weight / totalWeight, choices[i].value);
+        }
+        /// <summary>
         /// Select from an array of weighted values.
         /// <br></br>
         /// <br></br>
@@ -43,7 +63,7 @@ namespace ChocoUtil.Algorithms
                     return choices[i].value;
                 else currentWeight = nextWeight;
             }
-            return choices[choices.Length - 1].value;
+            return choices[^1].value;
         }
 
         /// <summary>
@@ -65,9 +85,7 @@ namespace ChocoUtil.Algorithms
                 // Note: Using int version of Random.Range
                 int j = UnityEngine.Random.Range(0, i);
                 // Swap i and j
-                T temp = items[i];
-                items[i] = items[j];
-                items[j] = temp;
+                (items[j], items[i]) = (items[i], items[j]);
             }
         }
         /// <summary>
@@ -80,6 +98,7 @@ namespace ChocoUtil.Algorithms
         /// <returns></returns>
         public static T[] Shuffle<T>(T[] items)
         {
+            // Make a copy, then shuffle the copy.
             T[] copy = new T[items.Length];
             Array.Copy(items, 0, copy, 0, items.Length);
             InplaceShuffle(copy);
